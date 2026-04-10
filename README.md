@@ -1,99 +1,98 @@
-# Esp32-based-Energy-Theft-and-Monitoring-System
+# Energy Theft Detection System using ESP32
 
-An IoT-based real-time energy monitoring and theft detection system using ESP32 and dual PZEM-004T energy measurement modules. The system performs edge-based anomaly detection by comparing supply-side and load-side current to detect unauthorized power usage.
+TheftGuard is an IoT-based real-time energy monitoring and theft detection system built using ESP32 and dual PZEM-004T energy measurement modules. The system performs edge-based anomaly detection by comparing supply-side and load-side current to identify unauthorized power consumption.
 
 ## 🚀 Features
 
-- Dual-point energy monitoring
-- Real-time anomaly detection
-- Edge-based processing (no cloud dependency)
+- Dual-point current sensing
+- Edge-based theft detection
+- ESP32 real-time processing
 - Firebase cloud integration
 - Live monitoring dashboard (PWA)
-- Sub-second response latency
+- Sub-500 ms response time
 - >98.5% detection accuracy
+- Low-cost scalable architecture
 
 ---
 
 ## 🧠 System Architecture
 
-Supply Line → PZEM Sensor 1 → ESP32 → Comparison Logic  
-Load Line → PZEM Sensor 2 → ESP32 → Anomaly Detection  
+The system is divided into three layers:
 
-If difference > threshold → Theft Detected
+### 1. Sensing Layer
+- PZEM-004T (Supply side)
+- PZEM-004T (Load side)
 
----
+### 2. Processing Layer
+- ESP32 Microcontroller
+- Edge-based comparison algorithm
 
-## 🔧 Hardware Components
-
-- ESP32 Dev Board
-- 2 × PZEM-004T Energy Monitoring Modules
-- Voltage/Current Input Lines
-- Power Supply
-- WiFi Network
+### 3. Cloud Layer
+- Firebase Realtime Database
+- Web dashboard (PWA)
 
 ---
 
 ## ⚙️ Working Principle
 
-The system measures:
+The system continuously reads:
 
-- Input power (supply side)
-- Output power (load side)
+- Supply-side current (Is)
+- Load-side current (Il)
 
-If Supply Current - Load Current > Threshold:
+Detection logic:
+difference = |Is - Il|
 
-Then:
+if difference > threshold:
+theft detected
 
-→ Energy theft detected  
-→ Alert triggered  
-→ Data logged to Firebase  
+Upon detection:
+- Alert triggered
+- Data uploaded to Firebase
+- Dashboard updated
 
 ---
 
-## 📡 Cloud Integration
+## 🔧 Hardware Components
 
-- Firebase Realtime Database
-- Web Dashboard (PWA)
-- Live monitoring
-- Historical data logging
+- ESP32 Development Board
+- 2 × PZEM-004T Energy Meter
+- Hi-Link AC-DC SMPS (230V → 5V)
+- AC Load
+- Power Source
+- WiFi Network
+
+---
+
+## 🔌 Communication Architecture
+
+- ESP32 ↔ PZEM modules → UART
+- ESP32 → Firebase → WiFi
 
 ---
 
 ## 📊 Performance
 
-- Detection Accuracy: >98.5%
-- Response Time: <500 ms
-- Real-time monitoring
-- Stable continuous operation
+Detection Accuracy: >98.5%  
+Response Latency: <500 ms  
+Stable continuous operation  
+Low false positive rate  
 
 ---
 
 ## 📁 Repository Structure
-firmware/ → ESP32 code
-hardware/ → circuit + block diagram
-dashboard/ → web app details
-docs/ → architecture documentation
-
----
-
-## 🛠️ Technologies Used
-
-- ESP32
-- PZEM-004T
-- Firebase
-- IoT
-- Edge Computing
-- Embedded C
-- Arduino Framework
-
+firmware/ ESP32 code
+hardware/ circuit diagrams
+docs/ architecture
+dashboard/ web interface
 ---
 
 ## 🎯 Applications
 
 - Smart Grid Monitoring
+- Energy Theft Detection
 - Industrial Power Monitoring
-- Home Energy Security
-- Utility Theft Detection
+- Residential Energy Security
 - Distribution Network Monitoring
 
 ---
@@ -101,8 +100,7 @@ docs/ → architecture documentation
 ## 👨‍💻 Author
 
 Noel Varghese George  
-Electronics & Communication Engineering  
-TKM College of Engineering  
+ECE | Embedded Systems | IoT | VLSI (Learning)
 
 LinkedIn: https://linkedin.com/in/noel-varghese-george-a44333328  
 GitHub: https://github.com/Noel01042006
